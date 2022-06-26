@@ -1,10 +1,18 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractUser
 
 
-class UserConfig(AbstractBaseUser):
-    # Кастомная модель абстрактного юзера
-    middle_name = models.CharField(max_length=50)
-    first_login = models.DateTimeField(null=True)
-    phone = models.CharField(max_length=14)
-    avatar = models.ImageField(upload_to='user/avatar/', blank=True, null=True)
+class CustomUser(AbstractUser):
+    # Кастомная модель юзера
+    GENDER = (
+        ('male', 'male'),
+        ('female', 'female')
+    )
+    middle_name = models.CharField('Отчество', max_length=80)
+    first_login = models.DateTimeField('Первый вход', null=True)
+    phone = models.CharField('Телефон', max_length=14)
+    avatar = models.ImageField('Аватар', upload_to='user/avatar/', blank=True, null=True)
+    bio = models.TextField('О себе', blank=True, null=True)
+    github = models.CharField('GitHub', max_length=500, blank=True, null=True)
+    birthday = models.DateField('Дата рождения', blank=True, null=True)
+    gender = models.CharField('Пол', max_length=6, choices=GENDER, default='male')
