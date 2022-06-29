@@ -31,8 +31,11 @@ INSTALLED_APPS = [
     'rest_framework',      # https://www.django-rest-framework.org/
     'djoser',              # https://djoser.readthedocs.io/en/latest/getting_started.html
     'drf_yasg',            # https://drf-yasg.readthedocs.io/en/stable/
+    'mptt',                # https://django-mptt.readthedocs.io/en/latest/install.html
 
-    'src.profiles'
+    'src.profiles',
+    'src.wall',
+    'src.comments',
 ]
 
 MIDDLEWARE = [
