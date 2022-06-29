@@ -16,3 +16,12 @@ class CustomUser(AbstractUser):
     github = models.CharField('GitHub', max_length=500, blank=True, null=True)
     birthday = models.DateField('Дата рождения', blank=True, null=True)
     gender = models.CharField('Пол', max_length=6, choices=GENDER, default='male')
+    technology = models.ManyToManyField('Technology', related_name='users')
+
+
+class Technology(models.Model):
+    # Модель технологий
+    title = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.title

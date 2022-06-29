@@ -4,6 +4,7 @@ from .models import CustomUser
 
 class GetCustomUserSerializer(serializers.ModelSerializer):
     # Вывод информации о пользователе
+    avatar = serializers.ImageField(read_only=True)
     class Meta:
         model = CustomUser
         exclude = (
