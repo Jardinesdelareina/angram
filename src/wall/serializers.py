@@ -17,7 +17,7 @@ class ListCommentSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
 
     def get_text(self, obj):
-        if obj.deleted:
+        if obj.is_deleted:
             return None
         return obj.text
 
@@ -35,7 +35,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ("id", "create_date", "user", "text", "comments", "view_count")
+        fields = ('id', 'create_date', 'user', 'text', 'comments', 'view_count')
 
 
 class ListPostSerializer(serializers.ModelSerializer):
@@ -44,4 +44,4 @@ class ListPostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ("id", "create_date", "user", "text", "comments_count")
+        fields = ('id', 'create_date', 'user', 'text', 'comments_count')

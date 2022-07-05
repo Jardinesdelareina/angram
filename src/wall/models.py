@@ -17,17 +17,20 @@ class Post(models.Model):
     def __str__(self):
         return f'Пост от {self.user}'
 
+    def comments_count(self):
+        return self.comments.count()
+
     class Meta:
         verbose_name = 'Пост'
         verbose_name_plural = 'Посты'
 
 
 class Comment(AbstractComment, MPTTModel):
-    # Модель комментария к посту
+    # Модель коментария к посту
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, related_name="comments", on_delete=models.CASCADE)
     parent = TreeForeignKey(
-        'self',
+        "self",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -35,7 +38,7 @@ class Comment(AbstractComment, MPTTModel):
     )
 
     def __str__(self):
-        return "{} -> {}".format(self.user, self.post)
+        return "{} - {}".format(self.user, self.post)
 
     class Meta:
         verbose_name = 'Комментарий'
