@@ -26,11 +26,11 @@ class Post(models.Model):
 
 
 class Comment(AbstractComment, MPTTModel):
-    # Модель коментария к посту
+    # Модель комментария к посту
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, related_name="comments", on_delete=models.CASCADE)
     parent = TreeForeignKey(
-        "self",
+        'self',
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
