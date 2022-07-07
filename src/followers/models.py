@@ -7,10 +7,17 @@ class Follower(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, 
         on_delete=models.CASCADE, 
-        related_name='owner')
+        related_name='owner',
+    )
 
     subscriber = models.ForeignKey(
         settings.AUTH_USER_MODEL, 
         on_delete=models.CASCADE, 
-        related_name='subscriber')
+        related_name='subscriber'
+    )
+
+    
+    class Meta:
+        verbose_name = 'Подписчик'
+        verbose_name_plural = 'Подписчики'
         

@@ -2,7 +2,7 @@ from rest_framework import permissions, generics
 from ..base.classes import CreateUpdateDestroy, CreateRetrieveUpdateDestroy
 from ..base.permissions import IsAuthor
 from .models import Post, Comment
-from .serializers import (PostSerializer, ListPostSerializer, CreateCommentSerializer)
+from .serializers import PostSerializer, ListPostSerializer, CreateCommentSerializer
 
 
 class PostListView(generics.ListAPIView):

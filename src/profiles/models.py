@@ -21,7 +21,7 @@ class CustomUser(AbstractUser):
 
 class Technology(models.Model):
     # Модель технологий
-    title = models.CharField(max_length=100)
+    title = models.CharField('Технологии', max_length=100)
 
     def __str__(self):
         return self.title
