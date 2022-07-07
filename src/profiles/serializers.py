@@ -30,3 +30,11 @@ class GetCustomUserPublicSerializer(serializers.ModelSerializer):
             'groups',
             'user_permissions',
         )
+
+
+class GetUserByForowersSerializer(serializers.ModelSerializer):
+    # Вывод пользователя для списка подписчиков
+    avatar = serializers.ImageField(read_only=True)
+    class Meta:
+        model = CustomUser
+        fields = ('id', 'username', 'avatar')

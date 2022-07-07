@@ -5,8 +5,8 @@ from django.contrib.auth.models import AbstractUser
 class CustomUser(AbstractUser):
     # Кастомная модель пользователя
     GENDER = (
-        ('male', 'male'),
-        ('female', 'female')
+        ('male', 'Мужской'),
+        ('female', 'Женский')
     )
     middle_name = models.CharField('Отчество', max_length=80)
     first_login = models.DateTimeField('Первый вход', null=True)
@@ -15,7 +15,7 @@ class CustomUser(AbstractUser):
     bio = models.TextField('О себе', blank=True, null=True)
     github = models.CharField('GitHub', max_length=500, blank=True, null=True)
     birthday = models.DateField('Дата рождения', blank=True, null=True)
-    gender = models.CharField('Пол', max_length=6, choices=GENDER, default='male')
+    gender = models.CharField('Пол', max_length=7, choices=GENDER, default='male')
     technology = models.ManyToManyField('Technology', related_name='users')
 
 

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from mptt.admin import MPTTModelAdmin
-from src.wall.models import *
+from .models import *
 
 
 @admin.register(Post)
