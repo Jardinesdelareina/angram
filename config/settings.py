@@ -140,7 +140,7 @@ REST_FRAMEWORK = {
 
 DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
-    'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
+    #'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
     'ACTIVATION_URL': '#/activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': True,
     'SERIALIZERS': {},
@@ -173,9 +173,17 @@ SIMPLE_JWT = {
 }
 
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:8080",
-    "http://localhost:8081",
-    "http://127.0.0.1:8000",
-    "http://127.0.0.1:1313",
-    "http://localhost:1313",
+    'http://localhost:8080',
+    'http://localhost:8081',
+    'http://127.0.0.1:8000',
+    'http://127.0.0.1:1313',
+    'http://localhost:1313',
 ]
+
+
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'django-project1@mail.ru'
+EMAIL_HOST_PASSWORD = 'w7aSs1MvtqJWTqxQNgdk'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
