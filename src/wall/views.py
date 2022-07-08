@@ -10,32 +10,33 @@ class PostListView(generics.ListAPIView):
     serializer_class = ListPostSerializer
 
     def get_queryset(self):
-        return Post.objects.filter(user_id=self.kwargs.get('pk'))
+        return Post.objects.filter(user_id=self.kwargs.get('pk'))\
+            .select_related('user').prefetch_related('comments')
 
 
 class PostView(CreateRetrieveUpdateDestroy):
     # CRUD поста
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    queryset = Post.objects.all()
+    queryset = Post.objects.all().select_related('user').prefetch_related('comments')
     serializer_class = PostSerializer
     permission_classes_by_action = {
-        'get': [permissions.AllowAny],
-        'update': [IsAuthor],
-        'destroy': [IsAuthor]
+        'get_post': [permissions.AllowAny],
+        'update_post': [IsAuthor],
+        'destroy_post': [IsAuthor]
     }
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
 
-class CommentsView(CreateUpdateDestroy):
+class CommentView(CreateUpdateDestroy):
     # CRUD комментариев к посту
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Comment.objects.all()
     serializer_class = CreateCommentSerializer
     permission_classes_by_action = {
-        'update': [IsAuthor],
-        'destroy': [IsAuthor]
+        'update_comment': [IsAuthor],
+        'destroy_comment': [IsAuthor]
     }
 
     def perform_create(self, serializer):
